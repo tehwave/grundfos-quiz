@@ -1,0 +1,104 @@
+/* --------------------------------
+
+Primary
+
+-------------------------------- */
+html {
+  font-size: 13px;
+  line-height: 16px;
+  font-family: 'Lucida Grande',Tahoma,Geneva,Verdana,sans-serif; }
+
+body {
+  background: #f5f5f5;
+  color: #727272; }
+
+/* --------------------------------
+
+Wrapper
+
+-------------------------------- */
+.warning-wrapper {
+  width: 100%;
+  background: #fe7847;
+  color: white;
+  padding: 12px 0; }
+
+.header-wrapper {
+  width: 100%;
+  background: #11497c; }
+
+.subheader-wrapper {
+  width: 100%;
+  background: #dcdcdc;
+  border-bottom: 1px solid #bebebe; }
+
+/* --------------------------------
+
+Panel
+
+-------------------------------- */
+.panel {
+  border: 0;
+  box-shadow: none; }
+  .panel .panel-heading {
+    border-radius: 0; }
+
+.panel-default .panel-heading {
+  background: #11497c;
+  color: white;
+  border-bottom: 0; }
+.panel-default .panel-body {
+  background: #f5f5f5;
+  border: 0;
+  border-top: solid 4px #11497c; }
+.panel-default .panel-footer {
+  background: #dcdcdc;
+  border-radius: 0; }
+
+.panel-image {
+  width: 100%; }
+
+/* --------------------------------
+
+Other
+
+-------------------------------- */
+.icon {
+  margin-right: 5px; }
+
+.main {
+  background: white; }
+
+.footer {
+  background: #11497c;
+  color: #72a1cf;
+  padding-top: 15px;
+  padding-bottom: 20px; }
+  .footer a {
+    color: #72a1cf; }
+  .footer p {
+    color: white; }
+  .footer .bethinkinnovate {
+    padding: 12px;
+    padding-right: 0; }
+  .footer hr {
+    border-color: #33648f; }
+
+.header {
+  color: white; }
+  .header .logo {
+    padding: 42px 0 12px 0; }
+  .header a {
+    color: #8cbbdd;
+    font-size: 12px;
+    line-height: 16px; }
+
+.subheader {
+  color: #444444;
+  padding: 12px 0 12px;
+  font-weight: bold;
+  font-size: 12px; }
+  .subheader .list-inline {
+    margin-bottom: 0; }
+
+/*# sourceMappingURL=app.css.map */
