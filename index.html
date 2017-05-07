@@ -63,7 +63,7 @@
 			</header>
 		</div>
 
-		<main>
+		<main id="quiz">
 			<!-- Subheader -->
 			<div class="subheader-wrapper">
 				<div class="container">
@@ -75,6 +75,69 @@
 							</ul>
 						</section>
 					</div>
+				</div>
+			</div>
+
+			<!-- Main -->
+			<div class="container main">
+				<div class="row text-center">
+					<section class="col-xs-12">
+						<h1>{{ quiz.title }} <small v-show="questionIndex < quiz.questions.length">{{ questionIndex + 1 }} / {{ quiz.questions.length }}</small></h1>
+						<hr>
+					</section>
+				</div>
+				<div class="row" v-for="(question, index) in quiz.questions">
+					<section class="col-lg-offset-3 col-lg-6" v-show="index === questionIndex">
+						<div class="panel panel-default">
+							<header class="panel-heading">
+								<h3>{{ question.title }}</h3>
+							</header>
+							<!-- <img src="http://placehold.it/500x250" class="panel-image"> -->
+							<section class="panel-body">
+								<p class="lead">{{ question.text }}</p>
+								<ol>
+									<li v-for="response in question.responses">
+										<label>
+											<!-- The radio button has three new directives -->
+											<!-- v-bind:value sets "value" to "true" if the response is correct -->
+											<!-- v-bind:name sets "name" to question index to group answers by question -->
+											<!-- v-model creates binding with userResponses -->
+											<input type="radio"
+											v-bind:value="response.correct"
+											v-bind:name="index"
+											v-model="userResponses[index]"> {{response.text}}
+										</label>
+									</li>
+								</ol>
+								<hr>
+						        <!-- The two navigation buttons -->
+						        <!-- Note: prev is hidden on first question -->
+						        <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn-default">
+						        	Prev
+						        </button>
+						        <button v-on:click="next" class="btn btn-default pull-right">
+						        	Next
+						        </button>
+							</section>
+						</div>
+					</section>
+				</div>
+				<div class="row results" v-show="questionIndex === quiz.questions.length">
+					<section class="col-lg-offset-3 col-lg-6 text-center">
+						<div v-if="score() === quiz.questions.length">
+							<img src="img/emoticons-laugh.png" class="img-responsive center-block">
+							<h2>Congratulations!</h2>
+							<h4>You passed the quiz</h4>
+							<p class="lead">Score: {{ score() }} / {{ quiz.questions.length }}</p>
+						</div>
+
+						<div v-if="score() < quiz.questions.length">
+							<img src="img/emoticons-cry.png" class="img-responsive center-block">
+							<h2>Oops, try again!</h2>
+							<h4>You failed the quiz</h4>
+							<p class="lead">Score: {{ score() }} / {{ quiz.questions.length }}</p>
+						</div>
+					</section>
 				</div>
 			</div>
 		</main>
