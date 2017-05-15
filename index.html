@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Grundfos – Safety Quiz</title>
+		<title>Grundfos – Safety</title>
 		<meta name="description" content="Grundfos has a global presence and is a full range supplier within pumps for heating, air conditioning, irrigation, industry, groundwater, boosting and water treatment.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,6 +12,13 @@
 
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/app.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+		</style>
 	</head>
 	<body>
 		<!-- Warnings -->
@@ -44,34 +51,39 @@
 			</div>
 		</noscript>
 
-		<!-- Header -->
-		<div class="header-wrapper hidden-print">
-			<header class="container header">
-				<div class="row navigation">
-					<section class="col-xs-12">
-						<ul class="list-inline">
-							<li><a href="#">Start new quiz</a></li>
-							<li><a href="#">Contact us</a></li>
-						</ul>
-					</section>
-				</div>
-				<div class="row">
-					<section class="col-xs-12">
-						<img src="img/grundfos.png" class="img-responsive logo">
-					</section>
-				</div>
-			</header>
-		</div>
-
-		<main id="quiz">
-			<!-- Subheader -->
-			<div class="subheader-wrapper">
-				<div class="container">
-					<div class="row subheader">
+		<main id="app">
+			<!-- Header -->
+			<div class="header-wrapper hidden-print">
+				<header class="container header">
+					<div class="row navigation">
 						<section class="col-xs-12">
 							<ul class="list-inline">
-								<li><span id="language">English</span></li>
-								<li><span id="location">Location</span></li>
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Contact us</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="row">
+						<section class="col-xs-12">
+							<img src="img/grundfos.png" class="img-responsive logo">
+						</section>
+					</div>
+				</header>
+			</div>
+
+			<!-- Subheader -->
+			<div class="subheader-wrapper" v-cloak>
+				<div class="container">
+					<div class="row subheader">
+						<section class="col-xs-10">
+							<ul class="list-inline">
+								<li>Language</li>
+								<li class="">Name / Company</li>
+							</ul>
+						</section>
+						<section class="col-xs-2">
+							<ul class="list-inline text-right">
+								<li>Reset</li>
 							</ul>
 						</section>
 					</div>
@@ -79,49 +91,63 @@
 			</div>
 
 			<!-- Main -->
-			<div class="container main">
+			<div class="container main" v-cloak>
+				<!-- Quiz -->
 				<div class="row text-center">
 					<section class="col-xs-12">
 						<h1>{{ quiz.title }} <small v-show="questionIndex < quiz.questions.length">{{ questionIndex + 1 }} / {{ quiz.questions.length }}</small></h1>
 						<hr>
 					</section>
 				</div>
+				<!-- Questions -->
 				<div class="row" v-for="(question, index) in quiz.questions">
-					<section class="col-lg-offset-3 col-lg-6" v-show="index === questionIndex">
-						<div class="panel panel-default">
+					<section class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6" v-show="index === questionIndex">
+						<div class="panel" v-bind:class="question.answered ? question.correct === true ? 'panel-success' : 'panel-danger animated shake' : 'panel-default' ">
 							<header class="panel-heading">
 								<h3>{{ question.title }}</h3>
 							</header>
-							<!-- <img src="http://placehold.it/500x250" class="panel-image"> -->
+							<img src="http://placehold.it/500x250" class="panel-image">
 							<section class="panel-body">
-								<p class="lead">{{ question.text }}</p>
+								<!-- Answers -->
 								<ol>
-									<li v-for="response in question.responses">
+									<li v-for="(answer, answerIndex) in question.answers">
 										<label>
-											<!-- The radio button has three new directives -->
-											<!-- v-bind:value sets "value" to "true" if the response is correct -->
-											<!-- v-bind:name sets "name" to question index to group answers by question -->
-											<!-- v-model creates binding with userResponses -->
 											<input type="radio"
-											v-bind:value="response.correct"
+											v-bind:value="answerIndex"
 											v-bind:name="index"
-											v-model="userResponses[index]"> {{response.text}}
+											v-model="responses[index]"
+											@change="unanswer"> {{ answer.text }}
 										</label>
 									</li>
 								</ol>
+								<!-- Description -->
+								<p v-if="question.description" class="lead">{{ question.description }}</p>
 								<hr>
-						        <!-- The two navigation buttons -->
-						        <!-- Note: prev is hidden on first question -->
-						        <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn-default">
-						        	Prev
-						        </button>
-						        <button v-on:click="next" class="btn btn-default pull-right">
-						        	Next
-						        </button>
+								<div class="row">
+									<!-- Message -->
+									<section class="col-xs-12 col-md-8 col-md-push-2">
+						                <p v-if="question.answered" class="text-center">
+						                    <span v-bind:class="question.correct ? 'text-success' : 'text-danger'">{{ question.message }}</span>
+						                </p>
+									</section>
+									<!-- Buttons -->
+									<section class="col-xs-6 col-md-2 col-md-pull-8">
+								        <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn-default">
+								        	Prev
+								        </button>
+									</section>
+									<section class="col-xs-6 col-md-2">
+								        <button v-on:click="next" class="btn btn-default pull-right">
+								        	Next
+								        </button>
+							        </section>
+								</div>
 							</section>
 						</div>
 					</section>
 				</div>
+				<!-- Results -->
+				<!-- TODO: Refactor -->
 				<div class="row results" v-show="questionIndex === quiz.questions.length">
 					<section class="col-lg-offset-3 col-lg-6 text-center">
 						<div v-if="score() === quiz.questions.length">
