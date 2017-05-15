@@ -41,19 +41,20 @@ Panel
   border: 0;
   box-shadow: none; }
   .panel .panel-heading {
+    border-radius: 0;
+    color: white;
+    border-bottom: 0; }
+  .panel .panel-body {
+    background: #f5f5f5;
+    border-top: solid 4px #f5f5f5; }
+  .panel .panel-footer {
+    background: #dcdcdc;
     border-radius: 0; }
 
 .panel-default .panel-heading {
-  background: #11497c;
-  color: white;
-  border-bottom: 0; }
+  background: #11497c; }
 .panel-default .panel-body {
-  background: #f5f5f5;
-  border: 0;
-  border-top: solid 4px #11497c; }
-.panel-default .panel-footer {
-  background: #dcdcdc;
-  border-radius: 0; }
+  border-color: #11497c; }
 
 .panel-image {
   width: 100%; }
