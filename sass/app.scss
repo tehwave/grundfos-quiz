@@ -151,4 +151,8 @@ Other
     .list-inline {
         margin-bottom: 0;
     }
+
+    .language, .name, .company {
+        text-transform: capitalize;
+    }
 }

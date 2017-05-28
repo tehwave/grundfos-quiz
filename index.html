@@ -36,6 +36,8 @@
 				</div>
 			</div>
 		<![endif]-->
+
+		<!-- NoScript / No JavaScript -->
 		<noscript>
 			<div class="warning-wrapper">
 				<div class="container warning">
@@ -51,6 +53,7 @@
 			</div>
 		</noscript>
 
+		<!-- App -->
 		<main id="app">
 			<!-- Header -->
 			<div class="header-wrapper hidden-print">
@@ -77,8 +80,11 @@
 					<div class="row subheader">
 						<section class="col-xs-10">
 							<ul class="list-inline">
-								<li>Language</li>
-								<li class="">Name / Company</li>
+								<li class="language">{{ user.language }}</li>
+								<li>
+									<span class="name">{{ user.name }}</span>
+									<span class="company" v-show="user.company != ''">/ {{ user.company }}</span>
+								</li>
 							</ul>
 						</section>
 						<section class="col-xs-2">
@@ -92,79 +98,249 @@
 
 			<!-- Main -->
 			<div class="container main" v-cloak>
-				<!-- Quiz -->
-				<div class="row text-center">
-					<section class="col-xs-12">
-						<h1>{{ quiz.title }} <small v-show="questionIndex < quiz.questions.length">{{ questionIndex + 1 }} / {{ quiz.questions.length }}</small></h1>
-						<hr>
-					</section>
-				</div>
-				<!-- Questions -->
-				<div class="row" v-for="(question, index) in quiz.questions">
-					<section class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6" v-show="index === questionIndex">
-						<div class="panel" v-bind:class="question.answered ? question.correct === true ? 'panel-success' : 'panel-danger animated shake' : 'panel-default' ">
-							<header class="panel-heading">
-								<h3>{{ question.title }}</h3>
-							</header>
-							<img src="http://placehold.it/500x250" class="panel-image">
-							<section class="panel-body">
-								<!-- Answers -->
-								<ol>
-									<li v-for="(answer, answerIndex) in question.answers">
-										<label>
-											<input type="radio"
-											v-bind:value="answerIndex"
-											v-bind:name="index"
-											v-model="responses[index]"
-											@change="unanswer"> {{ answer.text }}
-										</label>
-									</li>
-								</ol>
-								<!-- Description -->
-								<p v-if="question.description" class="lead">{{ question.description }}</p>
-								<hr>
-								<div class="row">
-									<!-- Message -->
-									<section class="col-xs-12 col-md-8 col-md-push-2">
-						                <p v-if="question.answered" class="text-center">
-						                    <span v-bind:class="question.correct ? 'text-success' : 'text-danger'">{{ question.message }}</span>
-						                </p>
-									</section>
-									<!-- Buttons -->
-									<section class="col-xs-6 col-md-2 col-md-pull-8">
-								        <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn-default">
-								        	Prev
-								        </button>
-									</section>
-									<section class="col-xs-6 col-md-2">
-								        <button v-on:click="next" class="btn btn-default pull-right">
-								        	Next
-								        </button>
-							        </section>
-								</div>
-							</section>
-						</div>
-					</section>
-				</div>
-				<!-- Results -->
-				<!-- TODO: Refactor -->
-				<div class="row results" v-show="questionIndex === quiz.questions.length">
-					<section class="col-lg-offset-3 col-lg-6 text-center">
-						<div v-if="score() === quiz.questions.length">
-							<img src="img/emoticons-laugh.png" class="img-responsive center-block">
-							<h2>Congratulations!</h2>
-							<h4>You passed the quiz</h4>
-							<p class="lead">Score: {{ score() }} / {{ quiz.questions.length }}</p>
-						</div>
+				<!-- Slide One -->
+				<section v-show="slideIndex == 0">
+					<div class="row text-center">
+						<section class="col-xs-12">
+							<h1 class="page-header">Select your language</h1>
+						</section>
+					</div>
+					<!-- Languages -->
+					<div class="row">
+						<section class="col-lg-6 col-lg-offset-3">
+							<div class="panel panel-default">
+								<header class="panel-heading">
+									<h3>English</h3>
+								</header>
+								<img src="http://placehold.it/500x250" class="panel-image">
+								<footer class="panel-footer">
+									<div class="row">
+										<section class="col-xs-12">
+											<button v-on:click="selectLanguage('english')" class="btn btn-default pull-right">
+												Select
+											</button>
+										</section>
+									</div>
+								</footer>
+							</div>
+						</section>
+					</div>
+				</section>
+				<!-- Slide Two -->
+				<section v-show="slideIndex == 1">
+					<div class="row text-center">
+						<section class="col-xs-12">
+							<h1 class="page-header">Input your information</h1>
+						</section>
+					</div>
+					<!-- Name / Company -->
+					<div class="row">
+						<section class="col-lg-6 col-lg-offset-3">
+							<div class="panel panel-default">
+								<header class="panel-heading">
+								</header>
+								<section class="panel-body">
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label for="name" class="col-sm-2 control-label">Name <span class="text-danger">*</span></label>
+											<section class="col-sm-10">
+												<input v-model="user.name" id="name" class="form-control" type="text" placeholder="Jens Jensen">
+											</section>
+										</div>
+										<div class="form-group">
+											<label for="company" class="col-sm-2 control-label">Company</label>
+											<section class="col-sm-10">
+												<input v-model="user.company" id="company" class="form-control" type="text" placeholder="Firma A/S">
+											</section>
+										</div>
+										<div class="form-group">
+											<section class="col-sm-12">
+												<p class="text-danger">* Required</p>
+											</section>
+										</div>
+									</form>
+								</section>
+								<footer class="panel-footer">
+									<div class="row">
+										<section class="col-xs-6">
+											<button v-show="slideIndex > 0" v-on:click="prevSlide" class="btn btn-default">
+												Previous
+											</button>
+										</section>
+										<section class="col-xs-6">
+											<button v-show="user.name !== ''" v-on:click="nextSlide" class="btn btn-default pull-right">
+												Next
+											</button>
+										</section>
+									</div>
+								</footer>
+							</div>
+						</section>
+					</div>
+				</section>
+				<!-- Slide Three -->
+				<section v-show="slideIndex == 2">
+					<div class="row text-center">
+						<section class="col-xs-12">
+							<h1 class="page-header">Guidelines</h1>
+						</section>
+					</div>
+					<!-- Guidelines -->
+					<div class="row">
+						<section class="col-lg-6 col-lg-offset-3">
+							<div class="panel panel-default">
+								<header class="panel-heading">
+								</header>
+								<section class="panel-body">
+									<ul class="media-list">
+										<li v-for="guideline in guidelines" class="media">
+											<div class="media-left media-middle">
+												<img v-show="guideline.image !== ''" class="media-object" :src="'img/guidelines/' + guideline.image">
+											</div>
+											<div class="media-body media-middle">
+												<h4 class="media-heading">{{ guideline.text }}</h4>
+											</div>
+										</li>
+									</ul>
+								</section>
+								<footer class="panel-footer">
+									<div class="row">
+										<section class="col-xs-6">
+											<button v-show="slideIndex > 0" v-on:click="prevSlide" class="btn btn-default">
+												Previous
+											</button>
+										</section>
+										<section class="col-xs-6">
+											<button v-on:click="nextSlide" class="btn btn-default pull-right">
+												Next
+											</button>
+										</section>
+									</div>
+								</footer>
+							</div>
+						</section>
+					</div>
+				</section>
+				<!-- Slide Four -->
+				<section v-show="slideIndex == 3">
+					<div class="row text-center">
+						<section class="col-xs-12">
+							<h1 class="page-header">Recommendations</h1>
+						</section>
+					</div>
+					<!-- Recommendations -->
+					<div class="row">
+						<section class="col-lg-6 col-lg-offset-3">
+							<div class="panel panel-default">
+								<header class="panel-heading">
+								</header>
+								<section class="panel-body">
+									<ul class="media-list">
+										<li v-for="recommendation in recommendations" class="media">
+											<div class="media-left media-middle">
+												<img v-show="recommendation.image !== ''" class="media-object" :src="'img/recommendations/' + recommendation.image">
+											</div>
+											<div class="media-body media-middle">
+												<h4 class="media-heading">{{ recommendation.text }}</h4>
+											</div>
+										</li>
+									</ul>
+								</section>
+								<footer class="panel-footer">
+									<div class="row">
+										<section class="col-xs-6">
+											<button v-show="slideIndex > 0" v-on:click="prevSlide" class="btn btn-default">
+												Previous
+											</button>
+										</section>
+										<section class="col-xs-6">
+											<button v-on:click="nextSlide" class="btn btn-default pull-right">
+												Next
+											</button>
+										</section>
+									</div>
+								</footer>
+							</div>
+						</section>
+					</div>
+				</section>
+				<!-- Slide Five -->
+				<section v-show="slideIndex == 4">
+					<!-- Quiz -->
+					<div class="row text-center">
+						<section class="col-xs-12">
+							<h1>{{ quiz.title }} <small v-show="questionIndex < quiz.questions.length">{{ questionIndex + 1 }} / {{ quiz.questions.length }}</small></h1>
+							<hr>
+						</section>
+					</div>
+					<!-- Questions -->
+					<div class="row" v-for="(question, index) in quiz.questions">
+						<section class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6" v-show="index === questionIndex">
+							<div class="panel" v-bind:class="question.answered ? question.correct === true ? 'panel-success' : 'panel-danger animated shake' : 'panel-default' ">
+								<header class="panel-heading">
+									<h3>{{ question.title }}</h3>
+								</header>
+								<img v-show="question.image !== ''" :src="'img/questions/' + question.image" class="panel-image">
+								<section class="panel-body">
+									<p v-if="question.description" class="lead">{{ question.description }}</p>
+									<!-- Answers -->
+									<ol>
+										<li v-for="(answer, answerIndex) in question.answers">
+											<label>
+												<input type="radio"
+												v-bind:value="answerIndex"
+												v-bind:name="index"
+												v-model="responses[index]"
+												@change="unanswer"> {{ answer.text }}
+											</label>
+										</li>
+									</ol>
+									<!-- Description -->
+								</section>
+								<footer class="panel-footer">
+									<div class="row">
+										<!-- Message -->
+										<section class="col-xs-12 col-md-8 col-md-push-2">
+											<p v-if="question.answered" class="text-center">
+												<span v-bind:class="question.correct ? 'text-success' : 'text-danger'">{{ question.message }}</span>
+											</p>
+										</section>
+										<!-- Buttons -->
+										<section class="col-xs-6 col-md-2 col-md-pull-8">
+											<button v-on:click="prev" class="btn btn-default">
+												Previous
+											</button>
+										</section>
+										<section class="col-xs-6 col-md-2">
+											<button v-on:click="next" class="btn btn-default pull-right">
+												Next
+											</button>
+										</section>
+									</div>
+								</footer>
+							</div>
+						</section>
+					</div>
+					<!-- Results -->
+					<!-- TODO: Refactor -->
+					<div class="row results" v-show="questionIndex === quiz.questions.length">
+						<section class="col-lg-offset-3 col-lg-6 text-center">
+							<div v-if="score() === quiz.questions.length">
+								<img src="img/emoticons-laugh.png" class="img-responsive center-block">
+								<h2>Congratulations!</h2>
+								<h4>You passed the quiz</h4>
+								<p class="lead">Score: {{ score() }} / {{ quiz.questions.length }}</p>
+							</div>
 
-						<div v-if="score() < quiz.questions.length">
-							<img src="img/emoticons-cry.png" class="img-responsive center-block">
-							<h2>Oops, try again!</h2>
-							<h4>You failed the quiz</h4>
-							<p class="lead">Score: {{ score() }} / {{ quiz.questions.length }}</p>
-						</div>
-					</section>
-				</div>
+							<div v-if="score() < quiz.questions.length">
+								<img src="img/emoticons-cry.png" class="img-responsive center-block">
+								<h2>Oops, try again!</h2>
+								<h4>You failed the quiz</h4>
+								<p class="lead">Score: {{ score() }} / {{ quiz.questions.length }}</p>
+							</div>
+						</section>
+					</div>
+				</section>
 			</div>
 		</main>
 

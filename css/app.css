@@ -101,5 +101,7 @@ Other
   font-size: 12px; }
   .subheader .list-inline {
     margin-bottom: 0; }
+  .subheader .language, .subheader .name, .subheader .company {
+    text-transform: capitalize; }
 
 /*# sourceMappingURL=app.css.map */
