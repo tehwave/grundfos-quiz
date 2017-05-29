@@ -58,7 +58,7 @@
     new Vue({
         el: "#app",
         data: {
-            slideIndex: 2,
+            slideIndex: 0,
             user: user,
             guidelines: guidelines,
             recommendations: recommendations,
