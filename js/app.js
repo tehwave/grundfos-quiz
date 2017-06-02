@@ -57,7 +57,6 @@ window.onload=function() {
     ];
 
     var quiz = {
-        title: 'Quiz',
         questions: [
             {
                 title: "Ved rundgangen skal jeg?",
