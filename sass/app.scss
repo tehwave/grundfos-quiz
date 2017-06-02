@@ -152,6 +152,12 @@ Other
         margin-bottom: 0;
     }
 
+    .list-left {
+        li {
+            padding: 6px 5px;
+        }
+    }
+
     .language, .name, .company {
         text-transform: capitalize;
     }
