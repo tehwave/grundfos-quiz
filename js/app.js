@@ -8,6 +8,7 @@ window.onload=function() {
 
     Vue.locales({
         'dansk': {
+            'subheader_reset': 'Nulstil',
             'information_title': 'Indtast din information',
             'information_name': 'Navn',
             'information_company': 'Firma',
@@ -20,6 +21,7 @@ window.onload=function() {
             'quiz_success': 'Du har svaret rigtigt!',
         },
         'english': {
+            'subheader_reset': 'Reset',
             'information_title': 'Input your information',
             'information_name': 'Name',
             'information_company': 'Company',
