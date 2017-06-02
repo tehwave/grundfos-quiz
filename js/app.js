@@ -1,5 +1,37 @@
-    window.onload=function() {
+window.onload=function() {
 
+    // Translation
+    Vue.use(Polyglot, {
+        defaultLanguage: 'english',
+        languagesAvailable: ['dansk']
+    });
+
+    Vue.locales({
+        'dansk': {
+            'information_title': 'Indtast din information',
+            'information_name': 'Navn',
+            'information_company': 'Firma',
+            'information_required': 'Påkrævet',
+            'slide_next': 'Næste',
+            'slide_previous': 'Tilbage',
+            'guidelines': 'Retningslinjer',
+            'recommendations': 'Anbefalinger',
+            'quiz_error': 'Forkert svar!',
+        },
+        'english': {
+            'information_title': 'Input your information',
+            'information_name': 'Name',
+            'information_company': 'Company',
+            'information_required': 'Required',
+            'slide_next': 'Next',
+            'slide_previous': 'Previous',
+            'guidelines': 'Guidelines',
+            'recommendations': 'Recommendations',
+            'quiz_error': 'Wrong answer!',
+        }
+    });
+
+    // Objects
     var user = {
         language: '',
         name: '',
@@ -36,7 +68,6 @@
                     { text: 'Det er OK, hvis jeg stopper, hvis noget ser interessant ud', correct: false },
                     { text: 'Hvis jeg bare følger op senere, er det OK', correct: false },
                 ],
-                message: '',
                 answered: false,
                 correct: false,
             }, {
@@ -48,13 +79,13 @@
                     { text: 'Right!', correct: true },
                     { text: 'Wrong!', correct: false },
                 ],
-                message: '',
                 answered: false,
                 correct: false,
             }
         ]
     };
 
+    // Application
     new Vue({
         el: "#app",
         data: {
@@ -71,6 +102,7 @@
         methods: {
             selectLanguage: function(language) {
                 this.user.language = language;
+                this.$polyglot.setLang({lang: language});
                 this.nextSlide();
             },
             nextSlide: function () {
@@ -91,8 +123,6 @@
                 //  If answer correct, proceed
                 if (question.correct === true) {
                     this.questionIndex++;
-                } else {
-                    question.message = 'Wrong.';
                 }
             },
             prev: function() {
