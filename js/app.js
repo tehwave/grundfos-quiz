@@ -16,7 +16,8 @@ window.onload=function() {
             'slide_previous': 'Tilbage',
             'guidelines': 'Retningslinjer',
             'recommendations': 'Anbefalinger',
-            'quiz_error': 'Forkert svar!',
+            'quiz_error': 'Desværre, forkert svar.',
+            'quiz_success': 'Du har svaret rigtigt!',
         },
         'english': {
             'information_title': 'Input your information',
@@ -27,7 +28,8 @@ window.onload=function() {
             'slide_previous': 'Previous',
             'guidelines': 'Guidelines',
             'recommendations': 'Recommendations',
-            'quiz_error': 'Wrong answer!',
+            'quiz_error': 'Sorry, that is wrong.',
+            'quiz_success': 'That is correct!',
         }
     });
 

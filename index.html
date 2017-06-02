@@ -322,7 +322,7 @@
 										<!-- Message -->
 										<section class="col-xs-12 col-md-8 col-md-push-2">
 											<p v-if="question.answered" class="text-center">
-												<span v-bind:class="question.correct ? 'text-success' : 'text-danger'">{{ $t('quiz_error') }}</span>
+												<span v-bind:class="question.correct ? 'text-success' : 'text-danger'">{{ question.correct ? $t('quiz_success') : $t('quiz_error') }}</span>
 											</p>
 										</section>
 										<!-- Buttons -->
