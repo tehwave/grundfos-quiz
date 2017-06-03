@@ -303,6 +303,7 @@
 								</header>
 								<img v-show="question.image !== ''" :src="'img/questions/' + question.image" class="panel-image">
 								<section class="panel-body">
+									<!-- Description -->
 									<p v-if="question.description" class="lead">{{ question.description }}</p>
 									<!-- Answers -->
 									<ol>
@@ -316,7 +317,6 @@
 											</label>
 										</li>
 									</ol>
-									<!-- Description -->
 								</section>
 								<footer class="panel-footer">
 									<div class="row">
