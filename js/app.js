@@ -19,6 +19,13 @@ window.onload=function() {
             'recommendations': 'Anbefalinger',
             'quiz_error': 'Desværre, forkert svar.',
             'quiz_success': 'Du har svaret rigtigt!',
+            'results_header_1': 'Tillykke!',
+            'results_header_2': 'Du har bestået sikkerhedskontrollen',
+            'results_instructions': 'Dette er din kviterring, venligst print den ud og vis den i receptionen',
+            'results_name': 'Navn',
+            'results_company': 'Firma',
+            'results_datetime': 'Dato & Tidspunkt',
+            'results_goodbye': 'Tak fordi du besøgte Grundfos. Ha\' en sikker og behagelig tur!',
         },
         'english': {
             'subheader_reset': 'Reset',
@@ -32,6 +39,13 @@ window.onload=function() {
             'recommendations': 'Recommendations',
             'quiz_error': 'Sorry, that is wrong.',
             'quiz_success': 'That is correct!',
+            'results_header_1': 'Congratulations',
+            'results_header_2': 'You have passed the safety check',
+            'results_instructions': 'This is your receipt, please print it out and show it in the reception.',
+            'results_name': 'Name',
+            'results_company': 'Company',
+            'results_datetime': 'Date & Time',
+            'results_goodbye': 'Thank you for visiting Grundfos. Have a safe and pleasant trip!',
         }
     });
 
@@ -127,6 +141,10 @@ window.onload=function() {
                 if (question.correct === true) {
                     this.questionIndex++;
                 }
+
+                if (this.questionIndex === this.quiz.questions.length) {
+                    this.nextSlide();
+                }
             },
             prev: function() {
 
@@ -146,9 +164,11 @@ window.onload=function() {
             unanswer: function () {
                 this.quiz.questions[this.questionIndex].answered = false;
             },
-            // TODO: Refactor
-            score: function () {
-                return quiz.questions.length;
+            date: function () {
+                return moment().locale('da').format('L HH[:]mm');
+            },
+            reset: function () {
+                location.reload();
             }
         }
     });

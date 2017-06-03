@@ -98,11 +98,24 @@ Other
     margin-right: 5px;
 }
 
+.strong {
+    font-weight: bold;
+}
+
 .main {
     background: white;
 }
 
+.results {
+    .information {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
 
+    p:last-child {
+        margin-bottom: 20px;
+    }
+}
 
 .footer {
     background: $blue;
