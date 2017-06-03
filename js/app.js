@@ -21,7 +21,7 @@ window.onload=function() {
             'quiz_success': 'Du har svaret rigtigt!',
             'results_header_1': 'Tillykke!',
             'results_header_2': 'Du har bestået sikkerhedskontrollen',
-            'results_instructions': 'Dette er din kviterring, venligst print den ud og vis den i receptionen',
+            'results_instructions': 'Dette er din kvittering, venligst print den ud og vis den i receptionen',
             'results_name': 'Navn',
             'results_company': 'Firma',
             'results_datetime': 'Dato & Tidspunkt',
