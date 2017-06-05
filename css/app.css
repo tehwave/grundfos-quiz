@@ -52,9 +52,20 @@ Panel
     border-radius: 0; }
 
 .panel-default .panel-heading {
-  background: #11497c; }
+  background: #11497c;
+  border-color: #11497c; }
 .panel-default .panel-body {
   border-color: #11497c; }
+
+.panel-danger .panel-heading {
+  background: #a94442; }
+.panel-danger .panel-body {
+  border-color: #a94442; }
+
+.panel-success .panel-heading {
+  background: #3c763d; }
+.panel-success .panel-body {
+  border-color: #3c763d; }
 
 .panel-image {
   width: 100%; }

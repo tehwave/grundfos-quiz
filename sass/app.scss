@@ -1,5 +1,7 @@
 @charset 'UTF-8';
 $blue: #11497c;
+$red: #a94442;
+$green: #3c763d;
 $gray: #dcdcdc;
 $dkgray: #bebebe;
 $black: #444444;
@@ -77,10 +79,31 @@ Panel
 .panel-default {
 	.panel-heading {
 		background: $blue;
+        border-color: $blue;
 	}
 
     .panel-body {
         border-color: $blue;
+    }
+}
+
+.panel-danger {
+    .panel-heading {
+        background: $red;
+    }
+
+    .panel-body {
+        border-color: $red;
+    }
+}
+
+.panel-success {
+    .panel-heading {
+        background: $green;
+    }
+
+    .panel-body {
+        border-color: $green;
     }
 }
 
