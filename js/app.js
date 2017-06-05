@@ -49,7 +49,7 @@ window.onload=function() {
         }
     });
 
-    // Objects
+    // Default Objects (these will be overwritten by their language equivalents)
     var user = {
         language: '',
         name: '',
@@ -59,45 +59,38 @@ window.onload=function() {
     var guidelines = [
         {
             image: 'evacuation.png',
-            text: 'Evakuation'
+            text: 'Evacuation'
         },
-        {
-            image: 'vest.png',
-            text: 'Vest'
-        }
     ];
 
     var recommendations = [
         {
             image: 'stairs.png',
-            text: 'Forsigtig færdsel på trapper. Vi anbefaler, at man holder ved gelænder ved færdsel på trapper.'
+            text: 'Stairs'
         },
     ];
 
     var quiz = {
         questions: [
             {
-                title: "Ved rundgangen skal jeg?",
-                description: "",
-                image: '',
-                answers: [
-                    { text: 'Altid blive sammen med gruppen', correct: true },
-                    { text: 'Det er OK, hvis jeg stopper, hvis noget ser interessant ud', correct: false },
-                    { text: 'Hvis jeg bare følger op senere, er det OK', correct: false },
+                "title": "question",
+                "description": "description",
+                "image": "question2.png",
+                "answers": [{
+                        "text": "Wrong",
+                        "correct": false
+                    },
+                    {
+                        "text": "Wrong",
+                        "correct": false
+                    },
+                    {
+                        "text": "Correct",
+                        "correct": true
+                    }
                 ],
-                answered: false,
-                correct: false,
-            }, {
-                title: "Question 2",
-                description: "Description",
-                image: 'question2.png',
-                answers: [
-                    { text: 'Wrong, too bad.', correct: false },
-                    { text: 'Right!', correct: true },
-                    { text: 'Wrong!', correct: false },
-                ],
-                answered: false,
-                correct: false,
+                "answered": false,
+                "correct": false
             }
         ]
     };
@@ -111,6 +104,7 @@ window.onload=function() {
             guidelines: guidelines,
             recommendations: recommendations,
             quiz: quiz,
+            test: null,
             questionIndex: 0,
             quizCompleted: false,
             questionCompleted: false,
@@ -118,9 +112,37 @@ window.onload=function() {
         },
         methods: {
             selectLanguage: function(language) {
+
+                //Set language
                 this.user.language = language;
                 this.$polyglot.setLang({lang: language});
+
+                //Get quiz, guidelines and recommendations
+                this.getFiles();
+
                 this.nextSlide();
+            },
+            getFiles: function () {
+                // Quiz
+                this.$http.get('files/quiz-' + this.user.language + '.json').then(response => {
+                    return response.json();
+                }).then(json => {
+                    this.quiz = json;
+                });
+
+                // Guidelines
+                this.$http.get('files/guideline-' + this.user.language + '.json').then(response => {
+                    return response.json();
+                }).then(json => {
+                    this.guidelines = json;
+                });
+
+                // Recommendations
+                this.$http.get('files/recommendation-' + this.user.language + '.json').then(response => {
+                    return response.json();
+                }).then(json => {
+                    this.recommendations = json;
+                });
             },
             nextSlide: function () {
                 this.slideIndex++;
