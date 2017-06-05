@@ -1,0 +1,223 @@
+{
+    "questions": [{
+            "title": "Ved rundgangen skal jeg?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Altid blive sammen med gruppen",
+                    "correct": true
+                },
+                {
+                    "text": "Det er OK, hvis jeg stopper, hvis noget ser interessant ud",
+                    "correct": false
+                },
+                {
+                    "text": "Hvis jeg bare følger op senere, er det OK",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Hvis f.eks. brand-alarm lyder, skal jeg?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Gå til nærmeste udgang",
+                    "correct": false
+                },
+                {
+                    "text": "Følg flertallet af medarbejderne",
+                    "correct": false
+                },
+                {
+                    "text": "Følg guidens instruktioner",
+                    "correct": true
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Hvis min telefon ringer, skal jeg?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Stå stille når jeg bruger mobiltelefonen",
+                    "correct": false
+                },
+                {
+                    "text": "Min telefon ringer ikke, da den er slået fra",
+                    "correct": true
+                },
+                {
+                    "text": "Kontakt guiden og sig, at du følger op senere",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Hvis du ser interessante emner i paller, må du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Gerne tage emner op, hvis de kommer i den samme palle igen",
+                    "correct": false
+                },
+                {
+                    "text": "Du må ikke røre emner, medmindre guiden specifikt giver dig lov",
+                    "correct": true
+                },
+                {
+                    "text": "Gerne tage emner, bare de ikke lægges tilbage igen",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Hvis du ser farlige situationer, skal du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Lade som om du ikke har set det",
+                    "correct": false
+                },
+                {
+                    "text": "Tage et billede af situationen",
+                    "correct": false
+                },
+                {
+                    "text": "Kontakt guiden med det samme",
+                    "correct": true
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Hvis du selv, eller en anden bliver dårlig, skal du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Tage kontakt til en af medarbejderne",
+                    "correct": false
+                },
+                {
+                    "text": "Tage kontakt til guiden",
+                    "correct": true
+                },
+                {
+                    "text": "Lade som ingenting",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "I kan i gruppen ikke være på fortovet. Hvad gør du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Det er OK at træde udenfor, selv om du ikke har sikkerhedssko på",
+                    "correct": false
+                },
+                {
+                    "text": "Bliver på fortovet og kontakter guiden ved første lejlighed",
+                    "correct": true
+                },
+                {
+                    "text": "Så længe det er produktionsområde, er det OK",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Der kommer en truck, der skal krydse din ganglinje. Hvad gør du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Jeg fortsætter, da jeg går på fortov",
+                    "correct": false
+                },
+                {
+                    "text": "Jeg holder tilbage, indtil jeg har øjenkontakt med truck chaufføren",
+                    "correct": true
+                },
+                {
+                    "text": "Det er som udgangspunkt truck chaufføren, der skal holde tilbage",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Du skal på toilet. Hvad gør du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Jeg smutter lige på toilet og følger op senere",
+                    "correct": false
+                },
+                {
+                    "text": "Jeg kontakter guiden",
+                    "correct": true
+                },
+                {
+                    "text": "Jeg siger det til min side mand og går på toilet",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Hvor må jeg ryge?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Jeg må ryge alle steder udenfor",
+                    "correct": false
+                },
+                {
+                    "text": "Jeg må ryge over alt",
+                    "correct": false
+                },
+                {
+                    "text": "Kun i afmærkede områder udenfor",
+                    "correct": true
+                }
+            ],
+            "answered": false,
+            "correct": false
+        },
+        {
+            "title": "Jeg vil gerne tage et billede af noget relevant for vores rundtur. Hvad gør du?",
+            "description": "",
+            "image": "",
+            "answers": [{
+                    "text": "Der må ikke tages billeder",
+                    "correct": true
+                },
+                {
+                    "text": "Der må gerne tages billeder, bare jeg oritenterer guiden",
+                    "correct": false
+                },
+                {
+                    "text": "Jeg må gerne tage billeder, bare det er til intern brug",
+                    "correct": false
+                }
+            ],
+            "answered": false,
+            "correct": false
+        }
+    ]
+}

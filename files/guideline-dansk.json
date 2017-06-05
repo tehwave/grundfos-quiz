@@ -1,0 +1,34 @@
+[
+    {
+        "image": "evacuation.png",
+        "text": "Ved en evakuering skal du følge din gruppe ud til samlingspunktet"
+    },
+    {
+        "image": "vest.png",
+        "text": "Besøgsveste er obligatoriske"
+    },
+    {
+        "image": "safetyshoes.png",
+        "text": "Sikkerhedssko er obligatoriske, uden for fuld markede gangfelter"
+    },
+    {
+        "image": "traffic.png",
+        "text": "Gående færdsel holder altid tilbage for kørende"
+    },
+    {
+        "image": "nophoto.png",
+        "text": "Ingen foto"
+    },
+    {
+        "image": "nophone.png",
+        "text": "Mobil skal være slukket"
+    },
+    {
+        "image": "guide.png",
+        "text": "Kontakt guiden hvis: Toiletbesøg, hvis du oplever farlige situationer, rør kun emner hvis guiden specifik giver lov til, hold dig til gruppen under dit besøg på virksomheden og uheld, eller en der får det dårligt"
+    },
+    {
+        "image": "instructions.png",
+        "text": "Følg guidens informationer under dit besøg"
+    }
+]
