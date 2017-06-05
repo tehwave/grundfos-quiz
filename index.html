@@ -90,7 +90,7 @@
 								</li>
 							</ul>
 						</section>
-						<section class="col-xs-2">
+						<section class="col-xs-2" v-show="slideIndex > 0">
 							<ul class="list-inline text-right">
 								<li><button v-on:click="reset" class="btn btn-default btn-sm">{{ $t('subheader_reset') }}</button></li>
 							</ul>
