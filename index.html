@@ -83,7 +83,10 @@
 					<div class="row subheader">
 						<section class="col-xs-10">
 							<ul class="list-inline list-left">
-								<li class="language">{{ user.language }}</li>
+								<li class="language" v-show="user.language != ''">
+									<img :src="'img/languages/' + user.language + '.png'" height="15">
+									{{ user.language }}
+								</li>
 								<li>
 									<span class="name">{{ user.name }}</span>
 									<span class="company" v-show="user.company != ''">/ {{ user.company }}</span>
