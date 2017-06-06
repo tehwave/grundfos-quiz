@@ -1,5 +1,5 @@
+//Application
 window.onload=function() {
-
     // Translation
     Vue.use(Polyglot, {
         defaultLanguage: 'english',
@@ -124,25 +124,35 @@ window.onload=function() {
             },
             getFiles: function () {
                 // Quiz
-                this.$http.get('files/quiz-' + this.user.language + '.json').then(response => {
-                    return response.json();
-                }).then(json => {
-                    this.quiz = json;
-                });
+                var self = this;
+                fetch('files/quiz-' + this.user.language + '.json')
+                    .then(function(response) {
+                        return response.json()
+                    }).then(function(json) {
+                        self.quiz = json;
+                    }).catch(function(ex) {
+                        console.log('JSON Parsing Failed', ex)
+                    });
 
-                // Guidelines
-                this.$http.get('files/guideline-' + this.user.language + '.json').then(response => {
-                    return response.json();
-                }).then(json => {
-                    this.guidelines = json;
-                });
+                // // Guidelines
+                fetch('files/guideline-' + this.user.language + '.json')
+                    .then(function(response) {
+                        return response.json()
+                    }).then(function(json) {
+                        self.guidelines = json;
+                    }).catch(function(ex) {
+                        console.log('JSON Parsing Failed', ex)
+                    });
 
-                // Recommendations
-                this.$http.get('files/recommendation-' + this.user.language + '.json').then(response => {
-                    return response.json();
-                }).then(json => {
-                    this.recommendations = json;
-                });
+                // // Recommendations
+                fetch('files/recommendation-' + this.user.language + '.json')
+                    .then(function(response) {
+                        return response.json()
+                    }).then(function(json) {
+                        self.recommendations = json;
+                    }).catch(function(ex) {
+                        console.log('JSON Parsing Failed', ex)
+                    });
             },
             nextSlide: function () {
                 this.slideIndex++;
