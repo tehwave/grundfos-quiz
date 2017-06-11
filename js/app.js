@@ -8,7 +8,7 @@ window.onload=function() {
 
     Vue.locales({
         'dansk': {
-            'subheader_reset': 'Nulstil',
+            'subheader_reset': 'Start ny',
             'information_title': 'Indtast din information',
             'information_name': 'Navn',
             'information_name_placeholder': 'Skriv dit navn her',
@@ -30,7 +30,7 @@ window.onload=function() {
             'results_goodbye': 'Tak fordi du besøgte Grundfos. Ha\' en sikker og behagelig tur!',
         },
         'english': {
-            'subheader_reset': 'Reset',
+            'subheader_reset': 'Start new',
             'information_title': 'Input your information',
             'information_name': 'Name',
             'information_name_placeholder': 'Write your name here',
